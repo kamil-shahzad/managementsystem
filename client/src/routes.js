@@ -77,7 +77,7 @@ const routes = [
 
   //registerd Users
   // {path: '/users' , name: 'users' , element: User},
-  {path: '/forms/users' , name: 'usersdata' , element: Userdata},
+  {path: '/forms/users' , name: 'Usersdata' , element: Userdata},
 
 
   { path: '/theme', name: 'Theme', element: Colors, exact: true },

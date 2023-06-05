@@ -13,99 +13,116 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CDropdown,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
+import { useState } from 'react'
+import CreateForm from '../allforms/CreateForm'
 
 const Layout = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setIsOpen(false);
+  };
+
+  const renderForm = () => {
+    switch (selectedItem) {
+      case 'Login':
+        return 8;
+      case 'Registration':
+        return 'register';
+      case 'Contact':
+        return 'forms';
+      default:
+        return null;
+    }
+  };
   return (
     <CRow>
-      <CCol xs={12}>
-        {/* <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Layout</strong> <small>Form grid</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              More complex forms can be built using our grid classes. Use these for form layouts
-              that require multiple columns, varied widths, and additional alignment options.
-            </p>
-            <DocsExample href="forms/layout#form-grid">
-              <CRow>
-                <CCol xs>
-                  <CFormInput placeholder="First name" aria-label="First name" />
-                </CCol>
-                <CCol xs>
-                  <CFormInput placeholder="Last name" aria-label="Last name" />
-                </CCol>
-              </CRow>
-            </DocsExample>
-          </CCardBody>
-        </CCard> */}
+      <CCol lg={6}>
+      CREATE NEW FORMS
+      </CCol>
+      <CCol lg={6}>
+         <CDropdown isOpen={isOpen} toggle={toggleDropdown}>
+        <CDropdownToggle caret>
+          Assigned To:
+        </CDropdownToggle>
+        <CDropdownMenu>
+          <CDropdownItem onClick={() => handleItemClick('Item 1')}>
+            Managers
+          </CDropdownItem>
+          <CDropdownItem onClick={() => handleItemClick('Item 2')}>
+            Team Leads
+          </CDropdownItem>
+          <CDropdownItem onClick={() => handleItemClick('Item 3')}>
+            Employees
+          </CDropdownItem>
+        </CDropdownMenu>
+      </CDropdown>   
       </CCol>
       <CCol xs={12}>
-        <CCard className="mb-4">
-        <CCol md={4}>
-                  <CFormLabel htmlFor="inputState">Rating Forms</CFormLabel>
-                  <CFormSelect id="inputState">
-                    <option>Perfomance Form</option>
-                    <option>Attendence Form</option>
-                    <option>Create New</option>
-                  </CFormSelect>
-                </CCol>
-          <CCardHeader>
-            <strong>Team Leads</strong>
-          </CCardHeader>
-          <CCardBody>
-              <CRow className="g-3">
-                
-                <CCol xs>
-                  <CFormInput placeholder="First name" aria-label="First name" />
-                </CCol>
-                <CCol xs>
-                  <CFormInput placeholder="Last name" aria-label="Last name" />
-                </CCol>
-              </CRow>
+        <CCard className="mb-4 ">
+          <CCardBody className='mb-8'>
+            <CRow className="g-3">
+              <CCol xs>
+                <CFormInput placeholder="First name" aria-label="First name" />
+              </CCol>
+              <CCol xs>
+                <CFormInput placeholder="Last name" aria-label="Last name" />
+              </CCol>
+            </CRow>
             <p className="text-medium-emphasis small">
               Assign the tasks to the team leads
             </p>
-              <CForm className="row g-3">
-                <CCol md={6}>
-                  <CFormLabel htmlFor="inputEmail4">Email</CFormLabel>
-                  <CFormInput type="email" id="inputEmail4" />
-                </CCol>
-                <CCol xs={6}>
-                  <CFormLabel htmlFor="inputAddress">Remarks</CFormLabel>
-                  <CFormInput id="inputAddress" placeholder="1234 Main St" />
-                </CCol>
-                <CCol md={6}>
-                  <CFormLabel htmlFor="inputCity">City</CFormLabel>
-                  <CFormInput id="inputCity" />
-                </CCol>
-                <CCol md={4}>
-                  <CFormLabel htmlFor="inputState">State</CFormLabel>
-                  <CFormSelect id="inputState">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </CFormSelect>
-                </CCol>
-                <CCol md={2}>
-                  <CFormLabel htmlFor="inputState">Rating</CFormLabel>
-                  <CFormSelect id="inputState">
-                    <option>Less than 5</option>
-                    <option>5-8</option>
-                    <option>10</option>
-                  </CFormSelect>
-                </CCol>
-                <CCol xs={12}>
-                  <CFormCheck type="checkbox" id="gridCheck" label="Notify me" />
-                </CCol>
-                <CCol xs={12}>
-                  <CButton type="submit">Assign</CButton>
-                </CCol>
-              </CForm>
+            <CForm className="row g-3">
+              <CCol md={6}>
+                <CFormLabel htmlFor="inputEmail4">Email</CFormLabel>
+                <CFormInput type="email" id="inputEmail4" />
+              </CCol>
+              <CCol xs={6}>
+                <CFormLabel htmlFor="inputAddress">Remarks</CFormLabel>
+                <CFormInput id="inputAddress" placeholder="1234 Main St" />
+              </CCol>
+              <CCol md={6}>
+                <CFormLabel htmlFor="inputCity">Tasks</CFormLabel>
+                <CFormInput id="inputCity" />
+              </CCol>
+              <CCol md={4}>
+                <CFormLabel htmlFor="inputState">Performances</CFormLabel>
+                <CFormSelect id="inputState">
+                  <option>Choose...</option>
+                  <option>...</option>
+                </CFormSelect>
+              </CCol>
+              <CCol md={2}>
+                <CFormLabel htmlFor="inputState">Rating</CFormLabel>
+                <CFormSelect id="inputState">
+                  <option>Less than 5</option>
+                  <option>5-8</option>
+                  <option>10</option>
+                </CFormSelect>
+              </CCol>
+              <CCol xs={12}>
+                <CFormCheck type="checkbox" id="gridCheck" label="Notify me" />
+              </CCol>
+              <CCol xs={12}>
+                <CButton type="submit">Assign</CButton>
+              </CCol>
+            </CForm>
           </CCardBody>
         </CCard>
-      </CCol>
+      </CCol> 
       {/* <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
@@ -180,7 +197,7 @@ const Layout = () => {
             </DocsExample>
           </CCardBody>
         </CCard>
-      </CCol> */}
+      </CCol>
       {/* <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
