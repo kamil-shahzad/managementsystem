@@ -50,7 +50,7 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Components',
+    name: 'Executions',
   },
   {
     component: CNavGroup,
@@ -90,12 +90,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Financials',
-        to: '/forms/layout',
+        to: '/forms/users',
       },
       {
         component: CNavItem,
         name: 'Call Center',
-        to: '/forms/layout',
+        to: '/forms/users',
       },
       
     ]

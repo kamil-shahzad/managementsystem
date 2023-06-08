@@ -92,7 +92,7 @@ const Layout = () => {
               </CCol>
               <CCol xs={6}>
                 <CFormLabel htmlFor="inputAddress">Remarks</CFormLabel>
-                <CFormInput id="inputAddress" placeholder="1234 Main St" />
+                <CFormInput id="inputAddress" placeholder="The Performance is satisfactory" />
               </CCol>
               <CCol md={6}>
                 <CFormLabel htmlFor="inputCity">Tasks</CFormLabel>
@@ -101,8 +101,10 @@ const Layout = () => {
               <CCol md={4}>
                 <CFormLabel htmlFor="inputState">Performances</CFormLabel>
                 <CFormSelect id="inputState">
-                  <option>Choose...</option>
-                  <option>...</option>
+                  <option>Good</option>
+                  <option>Satisfactory</option>
+                  <option>Average</option>
+                  <option>Poor</option>
                 </CFormSelect>
               </CCol>
               <CCol md={2}>
